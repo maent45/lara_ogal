@@ -17,6 +17,12 @@
                 @if (Auth::check())
                     <li>
                         <a href="#">
+                            <!--- 'user' refers to User model --->
+                            {{ Auth::user()->getNameOrUsername() }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
                             Sign out
                         </a>
                     </li>
