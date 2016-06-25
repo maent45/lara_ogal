@@ -4,14 +4,14 @@
     <h1>Sign up</h1>
     <form class="navbar-form navbar-left" method="post" role="search" action="{{ route('auth.signup') }}">
         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-            <input type="text" class="form-control" placeholder="Email" name="email">
+            <input type="text" class="form-control" placeholder="Email" name="email" value="{{ old('email') ?: '' }}">
             @if($errors->has('email'))
                 <span class="help-block">{{ $errors->first('email') }}</span>
             @endif
         </div>
         <br/><br/>
         <div class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
-            <input type="text" class="form-control" placeholder="Username" name="username">
+            <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') ?: '' }}">
             @if($errors->has('username'))
                 <span class="help-block">{{ $errors->first('username') }}</span>
             @endif
