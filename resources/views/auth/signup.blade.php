@@ -25,11 +25,11 @@
         </div>
         <br/><br/>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="First name" name="first_name">
+            <input type="text" class="form-control" placeholder="First name" name="first_name" value="{{ old('first_name') ?: '' }}">
         </div>
         <br/><br/>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Last name" name="last_name">
+            <input type="text" class="form-control" placeholder="Last name" name="last_name" value="{{ old('last_name') ?: '' }}">
         </div>
         <br/><br/>
         <button type="submit" class="btn btn-default">Sign up</button>

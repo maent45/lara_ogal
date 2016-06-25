@@ -40,3 +40,12 @@ Route::get('/signout', [
     'as' => 'auth.Signout',
 ]);
 
+/*
+ * Search
+ */
+
+Route::get('/search', [
+    'uses' => '\Lago\Http\Controllers\SearchController@getResults',
+    'as' => 'search.results',
+]);
+
