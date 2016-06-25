@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="{{ route('home') }}">Brand</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('auth.Signout') }}">
                             Sign out
                         </a>
                     </li>
