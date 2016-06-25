@@ -25,7 +25,8 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())
                     <li>
-                        <a href="#">
+                        <!--- 'Auth' for currently authenticated user --->
+                        <a href="{{ route('profile.index', ['username' => Auth::user()->username]) }}">
                             <!--- 'user' refers to User model --->
                             {{ Auth::user()->getNameOrUsername() }}
                         </a>

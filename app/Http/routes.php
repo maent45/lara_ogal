@@ -49,3 +49,13 @@ Route::get('/search', [
     'as' => 'search.results',
 ]);
 
+/*
+ * User profile
+ */
+
+// pass in {username} to route
+Route::get('/user/{username}', [
+    'uses' => '\Lago\Http\Controllers\ProfileController@getProfile',
+    'as' => 'profile.index',
+]);
+
