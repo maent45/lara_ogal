@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Lago\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

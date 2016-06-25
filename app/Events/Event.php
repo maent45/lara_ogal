@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Lago\Events;
 
 abstract class Event
 {
