@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Lago\User::class,
+            'model' => Lago\Models\User::class, /* NOTE: modified, since original 'User' model was deleted and new 'User' model being used is now under app/Models/User.php */
         ],
 
         // 'users' => [

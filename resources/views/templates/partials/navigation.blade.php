@@ -14,11 +14,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active">
-                    <a href="{{ route('auth.signup') }}">
-                        Sign up
-                    </a>
-                </li>
+                @if (Auth::check())
+                    <li>
+                        <a href="#">
+                            Sign out
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('auth.signup') }}">
+                            Sign up
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('auth.signin') }}">
+                            Sign in
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

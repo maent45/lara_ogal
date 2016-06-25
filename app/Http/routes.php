@@ -22,5 +22,14 @@ Route::post('/signup', [
     'uses' => '\Lago\Http\Controllers\AuthController@postSignup',
 ]);
 
+Route::get('/signin', [
+    'uses' => '\Lago\Http\Controllers\AuthController@getSignin',
+    'as' => 'auth.signin',
+]);
+
+Route::post('/signin', [
+    'uses' => '\Lago\Http\Controllers\AuthController@postSignin',
+]);
+
 
 
