@@ -81,3 +81,9 @@ Route::get('/friends', [
     'middleware' => ['auth'], // restrict this route to signed in users only
 ]);
 
+Route::get('/friends/add/{username}', [
+    'uses' => '\Lago\Http\Controllers\FriendController@getAdd',
+    'as' => 'friend.add',
+    'middleware' => ['auth'], // restrict this route to signed in users only
+]);
+

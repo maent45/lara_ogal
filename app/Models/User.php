@@ -74,6 +74,10 @@ class User extends Model implements AuthenticatableContract
         return $this->friendsOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
     }
 
+    /*
+     * NOTE: for all following methods, need to rewatch 20/37
+     */
+
     public function friendRequests() {
         // return all friends that haven't yet accepted a request
         return $this->friendsOfMine()->wherePivot('accepted', false)->get();
@@ -81,6 +85,31 @@ class User extends Model implements AuthenticatableContract
 
     public function friendRequestsPending() {
         return $this->friendOf()->wherePivot('accepted', false)->get();
+    }
+
+    public function hasFriendRequestPending(User $user) {
+        // cast as boolean to see if count exists
+        return (bool) $this->friendRequestsPending()->where('id', $user->id)->count();
+    }
+
+    public function hasFriendRequestReceived(User $user) {
+        return (bool) $this->friendRequests()->where('id', $user->id)->count();
+    }
+
+    // method to send request
+    // pass $user to get which user we are adding
+    public function addFriend(User $user) {
+        $this->friendOf()->attach($user->id);
+    }
+
+    public function acceptFriendRequest(User $user) {
+        $this->friendRequests()->where('id', $user->id)->first()->pivot()->update([
+            'accepted' => true,
+        ]);
+    }
+
+    public function isFriendsWith(User $user) {
+        return (bool) $this->friends()->where('id', $user->id)->count();
     }
 
 }
