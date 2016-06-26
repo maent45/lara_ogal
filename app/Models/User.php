@@ -52,4 +52,26 @@ class User extends Model implements AuthenticatableContract
         return $this->first_name ?: $this->username;
     }
 
+    // set belongs to many relationship between this user and friends
+    // 'friendsOfMine' finds the friends of this particular user, regardless if they have accepted or not
+    public function friendsOfMine() {
+        // '$this' is the User model and we tie it to 'Lago\Models\User'
+        // 'friends' is the pivot table, now match by the 'user_id'
+        // and 'friend_id' is the foreign key
+        return $this->belongsToMany('Lago\Models\User', 'friends', 'user_id', 'friend_id');
+    }
+
+    // now find users have this 'user' as their friend
+    public function friendOf() {
+        return $this->belongsToMany('Lago\Models\User', 'friends', 'friend_id', 'user_id');
+    }
+
+    // friends of this user that have accepted friend requests only
+    public function friends() {
+        // now call 'friendsOfMine()' to find friends but filter by 'accepted' column
+        // also merge both sides of the relationship otherwise friends who haven't accepted are not marked as friends of those who requested
+        // hopefully this all makes sense :/
+        return $this->friendsOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
+    }
+
 }
