@@ -59,3 +59,14 @@ Route::get('/user/{username}', [
     'as' => 'profile.index',
 ]);
 
+Route::get('/profile/edit', [
+    'uses' => '\Lago\Http\Controllers\ProfileController@getEdit',
+    'as' => 'profile.edit',
+    'middleware' => ['auth'], // restrict this route to signed in users only
+]);
+
+Route::post('/profile/edit', [
+    'uses' => '\Lago\Http\Controllers\ProfileController@postEdit',
+    'middleware' => ['auth'],
+]);
+

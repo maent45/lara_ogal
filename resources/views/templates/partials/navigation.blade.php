@@ -32,6 +32,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('profile.edit') }}">
+                            Edit profile
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('auth.Signout') }}">
                             Sign out
                         </a>
