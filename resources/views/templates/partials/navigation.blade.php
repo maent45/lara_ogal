@@ -26,6 +26,12 @@
                 @if (Auth::check())
                     <li>
                         <!--- 'Auth' for currently authenticated user --->
+                        <a href="{{ route('friend.index') }}">
+                            Friends
+                        </a>
+                    </li>
+                    <li>
+                        <!--- 'Auth' for currently authenticated user --->
                         <a href="{{ route('profile.index', ['username' => Auth::user()->username]) }}">
                             <!--- 'user' refers to User model --->
                             {{ Auth::user()->getNameOrUsername() }}

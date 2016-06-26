@@ -61,7 +61,7 @@ class User extends Model implements AuthenticatableContract
         return $this->belongsToMany('Lago\Models\User', 'friends', 'user_id', 'friend_id');
     }
 
-    // now find users have this 'user' as their friend
+    // now find users who have this 'user' as their friend
     public function friendOf() {
         return $this->belongsToMany('Lago\Models\User', 'friends', 'friend_id', 'user_id');
     }
@@ -72,6 +72,15 @@ class User extends Model implements AuthenticatableContract
         // also merge both sides of the relationship otherwise friends who haven't accepted are not marked as friends of those who requested
         // hopefully this all makes sense :/
         return $this->friendsOfMine()->wherePivot('accepted', true)->get()->merge($this->friendOf()->wherePivot('accepted', true)->get());
+    }
+
+    public function friendRequests() {
+        // return all friends that haven't yet accepted a request
+        return $this->friendsOfMine()->wherePivot('accepted', false)->get();
+    }
+
+    public function friendRequestsPending() {
+        return $this->friendOf()->wherePivot('accepted', false)->get();
     }
 
 }

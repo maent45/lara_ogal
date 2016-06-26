@@ -47,6 +47,7 @@ Route::get('/signout', [
 Route::get('/search', [
     'uses' => '\Lago\Http\Controllers\SearchController@getResults',
     'as' => 'search.results',
+    'middleware' => ['auth'],
 ]);
 
 /*
@@ -57,6 +58,7 @@ Route::get('/search', [
 Route::get('/user/{username}', [
     'uses' => '\Lago\Http\Controllers\ProfileController@getProfile',
     'as' => 'profile.index',
+    'middleware' => ['auth'],
 ]);
 
 Route::get('/profile/edit', [
@@ -68,5 +70,14 @@ Route::get('/profile/edit', [
 Route::post('/profile/edit', [
     'uses' => '\Lago\Http\Controllers\ProfileController@postEdit',
     'middleware' => ['auth'],
+]);
+
+/*
+ * Friends
+ */
+Route::get('/friends', [
+    'uses' => '\Lago\Http\Controllers\FriendController@getIndex',
+    'as' => 'friend.index',
+    'middleware' => ['auth'], // restrict this route to signed in users only
 ]);
 
